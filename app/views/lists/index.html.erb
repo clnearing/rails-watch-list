@@ -1,0 +1,7 @@
+<h1>Your Movie Watchlists!</h1>
+<ul>
+  <% @lists.each do |list| %>
+    <li class="my-2"><%= list.name %> - <%= link_to 'See Movies', list_path(list), class: "btn btn-secondary btn-sm py-0"%></li>
+  <% end %>
+</ul>
+<%= link_to "Add New List", new_list_path, class: "btn btn-warning btn-sm py-0" %>

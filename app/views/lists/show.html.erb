@@ -1,0 +1,21 @@
+<h1>Your "<%= @list.name %>" Movie List</h1>
+<%= link_to 'Add Movies', new_list_bookmark_path(@list), class: "btn btn-primary btn-sm py-0"%>
+<%= link_to 'Back', lists_path, class: "btn btn-danger btn-sm py-0"%>
+<ul>
+  <% @list.bookmarks.each do |bookmark| %>
+    <li><h2><strong><%= bookmark.movie.title %></strong></h2></li>
+    <li><img src="<%= bookmark.movie.poster_url %>" alt="" style="height:200px;"></li>
+    <li>Rating: <%= bookmark.movie.rating %></li>
+    <li>Overview: <%= bookmark.movie.overview %></li>
+    <li>Comments: <%= bookmark.comment %></li>
+    <li><%= link_to "Delete Bookmark", bookmark_path(bookmark),
+          data: {
+          turbo_method: :delete,
+          turbo_confirm: "Are you sure you want to remove #{bookmark.movie.title} from your #{@list.name} list"
+          },
+          class: "btn btn-danger btn-sm py-0"
+        %>
+    </li>
+    <br>
+  <% end %>
+</ul>
